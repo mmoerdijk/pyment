@@ -985,9 +985,11 @@ class DocsTools(object):
                 line = line.strip().replace(style_param, '', 1).strip()
                 if ':' in line:
                     param_part, param_description = line.split(':', 1)
+                    res = re.split(r'\s+', param_part.strip())
                 else:
-                    print("WARNING: malformed docstring parameter")
-                res = re.split(r'\s+', param_part.strip())
+                    print(f"WARNING: malformed docstring parameter {line}")
+                    res = line
+
                 if len(res) == 1:
                     param_name = res[0].strip()
                 elif len(res) == 2:

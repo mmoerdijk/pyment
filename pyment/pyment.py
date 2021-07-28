@@ -131,7 +131,10 @@ class PyComment(object):
                               **self.kwargs)
                 elem_list.append({'docs': e, 'location': (-i, -i)})
             else:
+                if "#" in l:
+                    continue
                 if waiting_docs and ('"""' in l or "'''" in l):
+
                     # not docstring
                     if not reading_docs and not (
                             l[:3] in ['"""', "'''"] or
